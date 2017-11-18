@@ -1,0 +1,18 @@
+"Start Symbol" = <S>
+var = {Letter}{alphaNumeric}*
+id = {Digit}+
+   
+<S> ::= <IF> <S> | <ELSE> <S> | <WHILE> <S> | <OPER> | <DEC> <S> | <>
+<IF> ::= 'if' '(' <COND> ')' '{' <S> '}'
+<ELSE> ::= 'if' '(' <COND> ')' '{' <S> '}' 'else' '{' <S> '}'
+<WHILE> ::= 'while' '(' <COND> ')' '{' <S> '}'
+<COND> ::= 'id' <CONDD> | <CONSTANT> <CONDD> | 'var' <CONDD>
+<CONDD> ::= <OP_LOGIC> <COND> <CONDD> | <>
+<OP_LOGIC> ::= '==' | '!=' | '<' | '>' | '<=' | '>=' | '&&' | '||'
+<OPER> ::= 'var' '=' <OPER2> ';'
+<OPER2> ::= 'id' <OPER22> | <CONSTANT> <OPER22> | 'var' <OPER22> | '(' <OPER2> ')' <OPER22> 
+<OPER22> ::= <OP_ARIT> <OPER2> <OPER22> | <>
+<DEC> ::= <TYPE> 'var' ';'
+<TYPE> ::= 'integer' | 'real' | 'boolean'
+<CONSTANT> ::= 'TRUE' | 'FALSE'
+<OP_ARIT> ::= '+' | '-' | '*' | '/' | '%'
